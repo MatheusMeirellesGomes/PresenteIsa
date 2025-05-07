@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surpresa para Isadora</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #111;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2vw;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .background img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+      filter: brightness(70%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px; /* Ajustado de 90vw para 700px */
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1.5rem; /* Ajustado de 2rem para 1.5rem */
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .titulo {
+      font-size: clamp(1.4rem, 4vw, 2.2rem); /* Ajustado de clamp(1.6rem, 4.5vw, 2.5rem) */
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 1rem; /* Ajustado de 1.2rem */
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .subtitulo {
+      font-size: clamp(1rem, 3vw, 1.6rem); /* Ajustado de clamp(1.2rem, 3.5vw, 2rem) */
+      color: #00f0ff;
+      margin-bottom: 0.6rem; /* Ajustado de 0.8rem */
+      opacity: 0;
+      animation: fadeIn 1s ease 0.5s forwards;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .heart {
+      font-size: clamp(1rem, 2.5vw, 1.4rem); /* Ajustado de clamp(1.2rem, 3vw, 1.6rem) */
+      color: #00f0ff;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    .texto-mes {
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem); /* Ajustado de clamp(1rem, 3vw, 1.6rem) */
+      color: #ccc;
+      margin-bottom: 1rem; /* Ajustado de 1.2rem */
+      opacity: 0;
+      animation: fadeIn 1s ease 1s forwards;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .texto {
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem); /* Ajustado de clamp(1rem, 3vw, 1.6rem) */
+      color: #ccc;
+      margin-bottom: 1rem; /* Ajustado de 1.2rem */
+      opacity: 0;
+      animation: fadeIn 1s ease 1.5s forwards;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .surpresa-button {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      background-color: #00f0ff;
+      color: #111;
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem); /* Ajustado de clamp(1rem, 3vw, 1.6rem) */
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeIn 1s ease 2s forwards;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .surpresa-button:hover {
+      background-color: #00d4e0;
+      box-shadow: 0 0 10px #00f0ff;
+    }
+
+    /* Corações Flutuantes */
+    .heart-float {
+      position: absolute;
+      font-size: 1.2rem;
+      color: #00f0ff;
+      opacity: 0.6;
+      z-index: 0;
+      animation: float linear infinite;
+    }
+
+    .heart-float.white {
+      color: #ffffff;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 0.6; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    /* Animação de entrada */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Animação de coração pulsante */
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      20% { transform: scale(1.3); }
+      40% { transform: scale(1); }
+      60% { transform: scale(1.3); }
+      80% { transform: scale(1); }
+      100% { transform: scale(1); }
+    }
+
+    /* Media Queries */
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem;
+      }
+
+      .container {
+        max-width: 90vw; /* Ajustado de 95vw */
+        padding: 1.2rem; /* Ajustado de 1.5rem */
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      .background img {
+        opacity: 0.9;
+        filter: brightness(80%);
+      }
+
+      .titulo {
+        font-size: clamp(1.2rem, 3.5vw, 1.8rem); /* Ajustado de clamp(1.4rem, 4vw, 2rem) */
+      }
+
+      .subtitulo {
+        font-size: clamp(0.9rem, 2.5vw, 1.4rem); /* Ajustado de clamp(1rem, 3vw, 1.6rem) */
+      }
+
+      .texto-mes {
+        font-size: clamp(0.8rem, 2vw, 1.1rem); /* Ajustado de clamp(0.9rem, 2.5vw, 1.3rem) */
+      }
+
+      .texto {
+        font-size: clamp(0.8rem, 2vw, 1.1rem); /* Ajustado de clamp(0.9rem, 2.5vw, 1.3rem) */
+      }
+
+      .surpresa-button {
+        font-size: clamp(0.8rem, 2vw, 1.1rem); /* Ajustado de clamp(0.9rem, 2.5vw, 1.3rem) */
+        padding: 0.6rem 1.2rem;
+      }
+
+      .heart-float {
+        font-size: 1rem;
+      }
+    }
+
+    @media (min-width: 481px) and (max-width: 768px) {
+      .container {
+        max-width: 80vw; /* Ajustado de 90vw */
+        padding: 1.5rem; /* Ajustado de 1.8rem */
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .background img {
+        opacity: 0.85;
+        filter: brightness(75%);
+      }
+
+      .titulo {
+        font-size: clamp(1.3rem, 3.8vw, 2rem); /* Ajustado de clamp(1.5rem, 4.2vw, 2.2rem) */
+      }
+
+      .subtitulo {
+        font-size: clamp(0.95rem, 2.8vw, 1.5rem); /* Ajustado de clamp(1.1rem, 3.2vw, 1.7rem) */
+      }
+
+      .texto-mes {
+        font-size: clamp(0.85rem, 2.3vw, 1.2rem); /* Ajustado de clamp(0.95rem, 2.8vw, 1.4rem) */
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1200px) {
+      .container {
+        max-width: 75vw; /* Ajustado de 85vw */
+      }
+    }
+
+    @media (min-width: 1201px) {
+      .container {
+        max-width: 600px; /* Ajustado de 800px */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <img src="fotopreferida.jpg" alt="Nossa Foto">
+  </div>
+  <div class="container">
+    <h1 class="titulo">Isadora, preparei uma surpresa para você</h1>
+    <h2 class="subtitulo">Nosso Primeiro Mês Juntos! <span class="heart">❤️</span></h2>
+    <p class="texto-mes">Isadora, há um mês começamos essa jornada incrível. Que venham muitos mais!</p>
+    <p class="texto">Você é muito especial para mim, e eu quis fazer algo diferente para te mostrar o quanto eu te amo. Clique no botão abaixo para descobrir a surpresa que preparei com todo carinho!</p>
+    <a href="detalhes.html" class="surpresa-button">Ver a Surpresa</a>
+  </div>
+
+  <script>
+    // Corações Flutuantes
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart-float");
+      if (Math.random() > 0.5) heart.classList.add("white");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 5 + 5 + "s";
+      heart.style.fontSize = Math.random() * 0.5 + 1 + "rem";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    for (let i = 0; i < 8; i++) {
+      setTimeout(createHeart, i * 1000);
+    }
+    setInterval(createHeart, 2500);
+  </script>
+</body>
+</html>
