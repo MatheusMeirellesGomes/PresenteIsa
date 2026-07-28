@@ -1,10 +1,17 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useState } from 'react'
 import { Link } from 'react-router-dom'
+import IntroGate, { shouldShowGate } from '../components/intro/IntroGate'
 import styles from './HomePage.module.css'
 
 const Hero3D = lazy(() => import('../components/hero/Hero3D'))
 
 export default function HomePage() {
+  const [gateOpen, setGateOpen] = useState(() => !shouldShowGate())
+
+  if (!gateOpen) {
+    return <IntroGate onOpen={() => setGateOpen(true)} />
+  }
+
   return (
     <div>
       <Suspense fallback={<div className={styles.heroFallback} />}>

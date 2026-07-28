@@ -1,0 +1,46 @@
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: var(--gradient-bg);
+  transition: opacity 0.7s ease;
+}
+
+.gate.closing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.icon {
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+  animation: heartbeat 2.2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+}
+
+.title {
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+  margin-bottom: 0.6rem;
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+  font-size: clamp(0.95rem, 3vw, 1.15rem);
+  max-width: 22rem;
+  margin-bottom: 2.2rem;
+}
+
+.button {
+  position: relative;
+}
