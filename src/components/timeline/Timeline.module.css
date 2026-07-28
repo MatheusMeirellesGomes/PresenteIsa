@@ -1,0 +1,27 @@
+.timeline {
+  position: relative;
+  padding-left: 1.75rem;
+  margin: 2rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.4rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--gradient-aurora);
+  opacity: 0.45;
+}
+
+@media (min-width: 720px) {
+  .timeline {
+    padding-left: 0;
+  }
+
+  .timeline::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
