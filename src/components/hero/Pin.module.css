@@ -1,0 +1,12 @@
+.label {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-family: var(--font-body);
+  white-space: nowrap;
+  color: #fff;
+  background: rgba(10, 5, 20, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+  transform: translate(-50%, -160%);
+}
