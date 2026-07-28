@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import Globe from './Globe'
@@ -46,7 +46,9 @@ export default function Hero3D() {
             <directionalLight position={[4, 2, 3]} intensity={1.4} color="#fff4e0" />
             <pointLight position={[-3, -2, -3]} intensity={0.5} color="#38bdf8" />
             <StarField />
-            <Globe />
+            <Suspense fallback={null}>
+              <Globe />
+            </Suspense>
             <Pin pin={ORIGIN} onSelect={handleSelectPin} />
             {DESTINATIONS.map((pin) => (
               <Pin key={pin.id} pin={pin} onSelect={handleSelectPin} />

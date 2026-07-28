@@ -1,40 +1,39 @@
 import { useRef } from 'react'
 import type { Mesh } from 'three'
+import { BackSide } from 'three'
 import { useFrame } from '@react-three/fiber'
+import { useTexture } from '@react-three/drei'
 
 export default function Globe() {
-  const outerRef = useRef<Mesh>(null)
-  const innerWireRef = useRef<Mesh>(null)
+  const earthRef = useRef<Mesh>(null)
+  const [dayMap, nightMap] = useTexture([
+    `${import.meta.env.BASE_URL}textures/earth-day.jpg`,
+    `${import.meta.env.BASE_URL}textures/earth-night-lights.jpg`,
+  ])
 
   useFrame((_, delta) => {
-    if (outerRef.current) outerRef.current.rotation.y += delta * 0.03
-    if (innerWireRef.current) innerWireRef.current.rotation.y -= delta * 0.05
+    if (earthRef.current) earthRef.current.rotation.y += delta * 0.035
   })
 
   return (
     <group>
-      {/* nucleo solido */}
-      <mesh>
-        <sphereGeometry args={[0.97, 48, 48]} />
+      {/* Terra com mapa real (continentes e oceanos) + luzes de cidade sutis */}
+      <mesh ref={earthRef}>
+        <sphereGeometry args={[1, 64, 64]} />
         <meshStandardMaterial
-          color="#150c26"
-          emissive="#3b1a5c"
-          emissiveIntensity={0.5}
-          roughness={0.65}
-          metalness={0.15}
+          map={dayMap}
+          emissiveMap={nightMap}
+          emissive="#ffcf8a"
+          emissiveIntensity={0.7}
+          roughness={0.9}
+          metalness={0}
         />
       </mesh>
 
-      {/* grade holografica externa */}
-      <mesh ref={outerRef}>
-        <icosahedronGeometry args={[1, 3]} />
-        <meshBasicMaterial color="#a855f7" wireframe transparent opacity={0.35} />
-      </mesh>
-
-      {/* segunda camada girando ao contrario, efeito "scanner" */}
-      <mesh ref={innerWireRef}>
-        <sphereGeometry args={[1.015, 24, 24]} />
-        <meshBasicMaterial color="#38bdf8" wireframe transparent opacity={0.18} />
+      {/* atmosfera sutil ao redor */}
+      <mesh scale={1.035}>
+        <sphereGeometry args={[1, 48, 48]} />
+        <meshBasicMaterial color="#5eb8ff" transparent opacity={0.1} side={BackSide} />
       </mesh>
     </group>
   )
