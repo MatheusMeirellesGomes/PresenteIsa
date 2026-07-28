@@ -1,18 +1,18 @@
-import { useState } from 'react'
 import { timeline } from '../../data/timeline'
+import { usePhotoModal } from '../../hooks/usePhotoModal'
 import PhotoModal from '../gallery/PhotoModal'
 import TimelineItem from './TimelineItem'
 import styles from './Timeline.module.css'
 
 export default function Timeline() {
-  const [openPhoto, setOpenPhoto] = useState<string | null>(null)
+  const { photo, open, close } = usePhotoModal()
 
   return (
     <div className={styles.timeline}>
       {timeline.map((moment, index) => (
-        <TimelineItem key={moment.id} moment={moment} side={index % 2 === 0 ? 'left' : 'right'} onOpenPhoto={setOpenPhoto} />
+        <TimelineItem key={moment.id} moment={moment} side={index % 2 === 0 ? 'left' : 'right'} onOpenPhoto={open} />
       ))}
-      <PhotoModal src={openPhoto} onClose={() => setOpenPhoto(null)} />
+      <PhotoModal photo={photo} onClose={close} />
     </div>
   )
 }
