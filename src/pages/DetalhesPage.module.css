@@ -1,0 +1,56 @@
+.verse {
+  font-size: clamp(1.1rem, 3.2vw, 1.5rem);
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.quote {
+  font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.title {
+  margin: 2rem 0 1.25rem;
+  font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+}
+
+.divider {
+  height: 1px;
+  width: 60%;
+  margin: 2rem auto;
+  background: var(--gradient-aurora);
+  border: none;
+  opacity: 0.5;
+}
+
+.message {
+  min-height: 6rem;
+  font-size: clamp(1rem, 2.8vw, 1.3rem);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.message::after {
+  content: '|';
+  margin-left: 2px;
+  color: var(--color-pink);
+  animation: blink 0.8s infinite;
+}
+
+.message.done::after {
+  content: '';
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.cta {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
