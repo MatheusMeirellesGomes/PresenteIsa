@@ -1,8 +1,15 @@
+import { HashRouter } from 'react-router-dom'
+import Nav from './components/layout/Nav'
+import FloatingHearts from './components/layout/FloatingHearts'
+import AppRoutes from './router'
+
 function App() {
   return (
-    <main>
-      <h1>Isadora &amp; Matheus</h1>
-    </main>
+    <HashRouter>
+      <FloatingHearts />
+      <AppRoutes />
+      <Nav />
+    </HashRouter>
   )
 }
 

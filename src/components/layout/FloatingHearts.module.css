@@ -1,0 +1,27 @@
+.container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  bottom: -10vh;
+  opacity: 0;
+  animation-name: float;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
