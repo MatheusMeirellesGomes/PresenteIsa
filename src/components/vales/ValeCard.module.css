@@ -1,0 +1,29 @@
+.card {
+  display: block;
+  padding: 1.2rem 1.4rem;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-glow);
+}
+
+.title {
+  font-size: clamp(1.1rem, 3.2vw, 1.4rem);
+  margin-bottom: 0.4rem;
+}
+
+.description {
+  color: var(--color-text-muted);
+  font-size: clamp(0.9rem, 2.6vw, 1.05rem);
+  margin-bottom: 0.5rem;
+}
+
+.hint {
+  font-size: 0.78rem;
+  color: #25d366;
+}

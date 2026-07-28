@@ -1,0 +1,21 @@
+.strip {
+  display: flex;
+  gap: 0.7rem;
+  overflow-x: auto;
+  padding: 0.3rem 0.1rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.thumb {
+  flex: 0 0 auto;
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.thumb:hover {
+  transform: scale(1.05);
+}

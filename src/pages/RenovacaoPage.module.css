@@ -1,0 +1,28 @@
+.title {
+  font-size: clamp(1.6rem, 5vw, 2.3rem);
+  margin-bottom: 1.2rem;
+}
+
+.verse {
+  font-size: clamp(0.9rem, 2.6vw, 1.05rem);
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: 0.7rem;
+}
+
+.description {
+  margin: 1.5rem 0;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+}
+
+.hiddenMessage {
+  margin: 1.5rem 0;
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-style: italic;
+  line-height: 1.8;
+  animation: fadeInUp 0.8s ease forwards;
+}
