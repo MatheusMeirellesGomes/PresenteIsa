@@ -5,8 +5,11 @@ import Globe from './Globe'
 import Pin from './Pin'
 import FlightArc from './FlightArc'
 import StarField from './StarField'
-import { ORIGIN, DESTINATIONS } from '../../data/globePins'
+import LocationPanel from './LocationPanel'
+import { ORIGIN, DESTINATIONS, type GlobePin } from '../../data/globePins'
 import { supportsWebGL } from './supportsWebGL'
+import { usePhotoModal } from '../../hooks/usePhotoModal'
+import PhotoModal from '../gallery/PhotoModal'
 import styles from './Hero3D.module.css'
 
 const AUTO_ADVANCE_MS = 7000
@@ -14,6 +17,8 @@ const SCROLL_TARGET_ID = 'home-content'
 
 export default function Hero3D() {
   const [webglOk] = useState(() => supportsWebGL())
+  const [selectedPin, setSelectedPin] = useState<GlobePin | null>(null)
+  const { photo, open, close } = usePhotoModal()
   const hasInteracted = useRef(false)
 
   useEffect(() => {
@@ -27,19 +32,24 @@ export default function Hero3D() {
     document.getElementById(SCROLL_TARGET_ID)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  function handleSelectPin(pin: GlobePin) {
+    hasInteracted.current = true
+    setSelectedPin(pin)
+  }
+
   return (
     <section className={styles.hero}>
       <div className={styles.canvasWrap} onPointerDown={() => (hasInteracted.current = true)}>
         {webglOk ? (
           <Canvas camera={{ position: [0, 0, 2.6], fov: 45 }} dpr={[1, 1.5]} gl={{ antialias: true }}>
-            <ambientLight intensity={0.5} />
-            <pointLight position={[3, 2, 4]} intensity={1.2} color="#a855f7" />
-            <pointLight position={[-3, -2, -3]} intensity={0.6} color="#38bdf8" />
+            <ambientLight intensity={0.6} />
+            <directionalLight position={[4, 2, 3]} intensity={1.4} color="#fff4e0" />
+            <pointLight position={[-3, -2, -3]} intensity={0.5} color="#38bdf8" />
             <StarField />
             <Globe />
-            <Pin pin={ORIGIN} />
+            <Pin pin={ORIGIN} onSelect={handleSelectPin} />
             {DESTINATIONS.map((pin) => (
-              <Pin key={pin.id} pin={pin} />
+              <Pin key={pin.id} pin={pin} onSelect={handleSelectPin} />
             ))}
             {DESTINATIONS.map((pin) => (
               <FlightArc
@@ -66,14 +76,22 @@ export default function Hero3D() {
       <div className={styles.overlay}>
         <h1 className={`${styles.title} aurora-text`}>Isadora &amp; Matheus</h1>
         <p className={styles.subtitle}>
-          Gira o globo, amor — cada ponto de luz é um lugar que a gente viveu juntos.
+          Gira o globo, amor — toque numa bolinha e veja as fotos daquele lugar.
         </p>
       </div>
 
-      <button className={styles.skip} onClick={scrollToContent} aria-label="Ver nossa história">
-        <span>nossa história</span>
-        <span className={styles.arrow} aria-hidden="true">⌄</span>
-      </button>
+      {selectedPin && (
+        <LocationPanel pin={selectedPin} onClose={() => setSelectedPin(null)} onOpenPhoto={open} />
+      )}
+
+      {!selectedPin && (
+        <button className={styles.skip} onClick={scrollToContent} aria-label="Ver nossa história">
+          <span>nossa história</span>
+          <span className={styles.arrow} aria-hidden="true">⌄</span>
+        </button>
+      )}
+
+      <PhotoModal photo={photo} onClose={close} />
     </section>
   )
 }
