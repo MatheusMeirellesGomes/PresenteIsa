@@ -7,9 +7,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem;
+  padding: calc(2rem + var(--safe-top)) 1.5rem calc(2rem + var(--safe-bottom));
   background: var(--gradient-bg);
   transition: opacity 0.7s ease;
+  overflow-y: auto;
 }
 
 .gate.closing {
@@ -34,11 +35,21 @@
   margin-bottom: 0.6rem;
 }
 
+.message {
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1rem, 3.2vw, 1.25rem);
+  line-height: 1.7;
+  max-width: 30rem;
+  margin-bottom: 1.5rem;
+}
+
 .subtitle {
   color: var(--color-text-muted);
-  font-size: clamp(0.95rem, 3vw, 1.15rem);
+  font-size: clamp(0.85rem, 2.6vw, 1rem);
   max-width: 22rem;
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.6rem;
 }
 
 .button {

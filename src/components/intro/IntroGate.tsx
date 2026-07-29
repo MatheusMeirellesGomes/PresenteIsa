@@ -38,7 +38,13 @@ export default function IntroGate({ onOpen }: IntroGateProps) {
       <FloatingHearts count={6} spawnIntervalMs={2200} />
       <span className={styles.icon} aria-hidden="true">💌</span>
       <h1 className={`${styles.title} aurora-text`}>Isadora</h1>
-      <p className={styles.subtitle}>Preparei uma coisa pra você. Toque quando estiver pronta.</p>
+      <p className={styles.message}>
+        Amor, tenho muito orgulho de você e de tudo que vivemos até aqui. Nossa jornada é feita
+        de tantas coisas boas, e sei que estamos subindo, degrau por degrau, rumo a tudo que
+        planejamos juntos. Obrigado por ser exatamente quem você é — isso aqui é só uma forma de
+        expressar a minha gratidão e o meu amor por você.
+      </p>
+      <p className={styles.subtitle}>Toque quando estiver pronta.</p>
       <button className={`${styles.button} btn-aurora`} onClick={handleOpen}>
         Abrir minha surpresa
       </button>
