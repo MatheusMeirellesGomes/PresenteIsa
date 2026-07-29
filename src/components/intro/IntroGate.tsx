@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import FloatingHearts from '../layout/FloatingHearts'
+import { useMusic } from '../../context/MusicContext'
 import styles from './IntroGate.module.css'
 
 const STORAGE_KEY = 'presenteisa:gate-opened'
@@ -18,8 +19,11 @@ export function shouldShowGate(): boolean {
 
 export default function IntroGate({ onOpen }: IntroGateProps) {
   const [closing, setClosing] = useState(false)
+  const { start } = useMusic()
 
   function handleOpen() {
+    // chama play() sincrono dentro do clique, senao o navegador bloqueia o autoplay
+    start()
     try {
       sessionStorage.setItem(STORAGE_KEY, '1')
     } catch {

@@ -34,6 +34,7 @@ export default function HomePage() {
             <Link to="/detalhes" className="btn-aurora">Ver a Surpresa</Link>
             <Link to="/renovacao" className="btn-aurora">Descubra Nossa Renovação Mágica</Link>
           </div>
+          <p className={styles.credit}>Música: "Tenderness" by Bensound.com</p>
         </div>
       </div>
     </div>

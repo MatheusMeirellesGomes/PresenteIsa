@@ -75,6 +75,10 @@ Todo push na branch `presenteisa` dispara o workflow em `.github/workflows/deplo
 
 Cada marco da timeline tem sua própria pasta em `src/assets/timeline/<marco>/` — é só arrastar as fotos pra pasta certa que elas aparecem automaticamente, sem precisar mexer em código.
 
+## 🎵 Créditos
+
+Música de fundo: "Tenderness" by Bensound.com (licença gratuita, uso livre com atribuição).
+
 ## 📝 Nota
 
 Este é um projeto pessoal e sentimental. As imagens e conteúdos são privados e fazem parte da nossa história. 💕

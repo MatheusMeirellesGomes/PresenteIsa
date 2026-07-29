@@ -23,6 +23,12 @@
   margin-top: 1.5rem;
 }
 
+.credit {
+  margin-top: 2rem;
+  font-size: 0.7rem;
+  color: var(--color-text-faint);
+}
+
 .heroFallback {
   width: 100%;
   height: 100dvh;
